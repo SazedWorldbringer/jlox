@@ -12,7 +12,7 @@ class Interpreter implements Expr.Visitor<Object> {
 
     switch (expr.operator.type) {
       case MINUX:
-        checkNumberOperand(expr.operator, right)
+        checkNumberOperand(expr.operator, right);
         return -(double) right;
       case BANG:
         return !isTruthy(right);
