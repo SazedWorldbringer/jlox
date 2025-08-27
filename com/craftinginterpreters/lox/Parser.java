@@ -53,7 +53,12 @@ class Parser {
 
   private Stmt printStatement() {
     Expr value = expression();
-    consume(SEMICOLON, "Expect ';' after value.");
+    if (!Lox.replMode) {
+      consume(SEMICOLON, "Expect ';' after value.");
+    } else {
+      match(SEMICOLON);
+    }
+
     return new Stmt.Print(value);
   }
 
@@ -65,13 +70,22 @@ class Parser {
       initializer = expression();
     }
 
-    consume(SEMICOLON, "Expect ';' after variable declaration.");
+    if (!Lox.replMode) {
+      consume(SEMICOLON, "Expect ';' after variable declaration.");
+    } else {
+      match(SEMICOLON);
+    }
     return new Stmt.Var(name, initializer);
   }
 
   private Stmt expressionStatement() {
     Expr expr = expression();
-    consume(SEMICOLON, "Expect ';' after value.");
+
+    if (!Lox.replMode) {
+      consume(SEMICOLON, "Expect ';' after variable declaration.");
+    } else {
+      match(SEMICOLON);
+    }
     return new Stmt.Expression(expr);
   }
 
