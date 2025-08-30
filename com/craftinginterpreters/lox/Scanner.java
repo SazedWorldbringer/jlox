@@ -96,7 +96,20 @@ class Scanner {
         addToken(match('=') ? LESS_EQUAL : LESS);
         break;
       case '/':
-        if (match('/')) {
+        if (match('*')) {
+          // a block comment goes until you get "*/"
+          while (!(peek() == '*' && peekNext() == '/') && !isAtEnd()) {
+            // handle newlines
+            if (peek() == '\n')
+              line++;
+            advance();
+          }
+          if (!isAtEnd()) {
+            // consume the closing "*/"
+            advance(); // consume "*"
+            advance(); // consume "/"
+          }
+        } else if (match('/')) {
           // a comment goes until the end of the line
           while (peek() != '\n' && !isAtEnd())
             advance();
