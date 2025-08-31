@@ -1,3 +1,4 @@
 out/
 *.class
 com/craftinginterpreters/lox/AstPrinter*
+test.lox
