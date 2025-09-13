@@ -254,7 +254,7 @@ class Interpreter implements Expr.Visitor<Object>, Stmt.Visitor<Void> {
       case EQUAL_EQUAL:
         checkNumberOperands(expr.operator, left, right);
         return isEqual(left, right);
-      case MINUX:
+      case MINUS:
         checkNumberOperands(expr.operator, left, right);
         return (double) left - (double) right;
       case PLUS:
