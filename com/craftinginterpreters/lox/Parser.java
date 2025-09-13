@@ -265,7 +265,7 @@ class Parser {
   private Expr term() {
     Expr expr = factor();
 
-    while (match(MINUX, PLUS)) {
+    while (match(MINUS, PLUS)) {
       Token operator = previous();
       Expr right = factor();
       expr = new Expr.Binary(expr, operator, right);
@@ -287,7 +287,7 @@ class Parser {
   }
 
   private Expr unary() {
-    if (match(BANG, MINUX)) {
+    if (match(BANG, MINUS)) {
       Token operator = previous();
       Expr right = unary();
       return new Expr.Unary(operator, right);

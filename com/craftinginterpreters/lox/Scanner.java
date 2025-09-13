@@ -72,7 +72,7 @@ class Scanner {
         addToken(DOT);
         break;
       case '-':
-        addToken(MINUX);
+        addToken(MINUS);
         break;
       case '+':
         addToken(PLUS);

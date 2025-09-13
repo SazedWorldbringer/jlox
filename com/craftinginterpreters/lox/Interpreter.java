@@ -61,7 +61,7 @@ class Interpreter implements Expr.Visitor<Object>, Stmt.Visitor<Void> {
     Object right = evaluate(expr.right);
 
     switch (expr.operator.type) {
-      case MINUX:
+      case MINUS:
         checkNumberOperand(expr.operator, right);
         return -(double) right;
       case BANG:
